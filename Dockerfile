@@ -1,9 +1,12 @@
 FROM node:20-alpine
 
-COPY deploy-app /app
 WORKDIR /app
 
-RUN npm ci
+COPY deploy-app/package*.json ./
+
+RUN npm install
+
+COPY deploy-app/ .
 
 ENV PORT=3000
 EXPOSE 3000
